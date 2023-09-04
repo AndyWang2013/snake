@@ -17,19 +17,18 @@
 		<img id="snakeShutMouth" src='images/snakeShutMouth.png'/>
 		<img id="snakeOpenMouth" src='images/snakeOpenMouth.png'/>
 		<img id="snakeSad" src='images/snakeSad.png'/>
+		<img id="fruits" src='images/fruits.png'/>
 	</div>
 	<canvas id="can" width="800px" height="800px" style="border: 8px double chocolate; margin-bottom: 20px;">对不起，您的浏览器不支持canvas</canvas>
 	<!-- Rounded switch -->
 	<div style="line-height: 35px; width: 800px; margin: auto;">
+		<a href="" onClick="window.alert('键盘设备：使用上、下、左、右箭头操作;移动设备：使用手势，上下左右滑动来控制贪吃蛇前进的方向。每次变相操作完成，手指需离开屏幕.')" style="text-align: left; display: inline-block; float:left;">操作说明</a>
 		<label class="switch">
 			<input type="checkbox" value=false onChange="toggleTheme(this)">
 			<span class="slider round"/>  
 		</label>
-		<span style="font-size: 20px">Andy's 深色主题</span>
-		<div style="background-color: #25ae88; width: 200px; margin: 30px auto; color: white; line-height: 80px; font-size: 24px;" onClick="reset();">重新开始</div>
-		<h3 style="text-align: left;">操作说明：</h3>
-		<div style="text-align: left; font-size: 20px">移动设备：使用手势，上下左右滑动来控制贪吃蛇前进的方向。每次变相操作完成，手指需离开屏幕</div>
-		<div style="text-align: left; font-size: 20px">键盘设备：使用上、下、左、右箭头操作</div>
+		<span>Enable Andy's dark theme - 深色主题</span>
+		<div style="background-color: #25ae88; width: 200px; margin: 20px auto; color: white; line-height: 60px; font-size: 24px;" onClick="reset();">重新开始</div>
 	</div>
 	
 	<script src="snake.js"></script>

@@ -26,7 +26,7 @@ const gifs = [
     'https://media.giphy.com/media/2gtoSIzdrSMFO/giphy.gif']; 
 const scoreElement = document.querySelector('#score'), starSpanElement = document.querySelector('#starSpan'), hiddenStar = document.querySelector('[name="star"]');
 const gifImg = document.querySelector('#suprise'), snakeShutMouthImg = document.querySelector("#snakeShutMouth"), snakeOpenMouthImg = document.querySelector("#snakeOpenMouth"), snakeSadImg = document.querySelector("#snakeSad");
-
+const fruitsImg = document.querySelector('#fruits');
 
 function drawHead(seat, image) {
     const topLeftX = seat % cellsInOneRow * cellSizeInPixes + 1, topLeftY = ~~(seat / cellsInOneRow) * cellSizeInPixes + 1, cellSize = cellSizeInPixes - 2;
@@ -57,6 +57,14 @@ function draw(seat, fillColor, radius) {
     box.beginPath();
     box.roundRect(seat % cellsInOneRow * cellSizeInPixes + 1, ~~(seat / cellsInOneRow) * cellSizeInPixes + 1, cellSizeInPixes - 2, cellSizeInPixes - 2, borderRadius);
     box.fill();
+}
+
+const fruitTopLeftXClipping = 25, fruitTopLeftYClipping = 35, fruitwidthOfClipped = cellSizeInPixes * 2.32;
+function drawFruit(seat) {
+    const topLeftX = seat % cellsInOneRow * cellSizeInPixes + 1, topLeftY = ~~(seat / cellsInOneRow) * cellSizeInPixes + 1, cellSize = cellSizeInPixes - 2;
+    var xIndex = Math.floor(Math.random() * 5), yIndex = Math.floor(Math.random() * 5); // generate a random number in range of [0, 5)
+    console.log(xIndex + ", " + yIndex);
+    box.drawImage(fruitsImg, fruitTopLeftXClipping + xIndex * fruitwidthOfClipped, fruitTopLeftYClipping + yIndex * fruitwidthOfClipped * 0.95, fruitwidthOfClipped * 0.8, fruitwidthOfClipped * 0.8, topLeftX, topLeftY, cellSize, cellSize);
 }
 
 document.onkeydown = function (evt) {
@@ -118,14 +126,12 @@ function run() {
             gifImg.classList.remove('hidden');
             setTimeout(function () {
                 gifImg.classList.add('hidden');
-                console.log(score);
-                console.log(gifIndex);
                 gifImg.src = gifs[gifIndex];
             }, 3000)
         }
         scoreElement.innerHTML = "得分 Your Score:" + score++;
         while (snake.indexOf(food = ~~(Math.random() * 400)) > 0);
-        draw(food, "yellow", 0);
+        drawFruit(food);
     } else {                //没有吃到食物时正常移动，蛇尾出队列
         draw(snake.pop(), backgroundColor);
     }
